@@ -542,4 +542,29 @@ public class Demo {
 		}
 	}
 	
+	/** partially reverse a linked list
+	 *  pre->1->2->3->4->end
+	 *=>pre->2->1->3->4->end
+	 *=>pre->3->2->1->4->end
+	 *=>pre->4->3->2->1->end
+	 *
+	 */
+	public void reverseBetween(Node pre, Node end) {
+		if(pre.next == end) {
+			return;
+		}
+		
+		// at least there will be 3 nodes: pre->node1->end
+		Node last = pre.next;
+		Node cur = last.next;
+		
+		while(cur != end) {
+			last.next = cur.next;
+			cur.next = pre.next;
+			pre.next = cur;
+			
+			cur = cur.next;
+		}
+	}
+	
 }
